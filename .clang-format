@@ -1,0 +1,83 @@
+# Base
+BasedOnStyle: LLVM
+Language: Cpp
+
+# Line width & tabs
+ColumnLimit: 140
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+
+# Braces / wrapping
+BreakBeforeBraces: Stroustrup
+BraceWrapping:
+  AfterCaseLabel: false
+  AfterClass: false
+  AfterControlStatement: false
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterStruct: false
+  AfterUnion: false
+  AfterExternBlock: false
+  BeforeCatch: true
+  BeforeElse: true
+  BeforeLambdaBody: false
+  IndentBraces: false
+
+# Short forms
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLambdasOnASingleLine: Inline
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortEnumsOnASingleLine: true
+AlwaysBreakTemplateDeclarations: Yes
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+
+# Namespaces / indentation
+NamespaceIndentation: None
+EmptyLineBeforeAccessModifier: Always
+
+# Alignment / spacing
+PointerAlignment: Left
+ReferenceAlignment: Left
+AlignAfterOpenBracket: Align
+AlignOperands: true
+SpaceBeforeParens: ControlStatements
+SpacesInParentheses: false
+SpacesInAngles: false
+Cpp11BracedListStyle: true
+ReflowComments: true
+SortUsingDeclarations: true
+KeepEmptyLinesAtTheStartOfBlocks: false
+MaxEmptyLinesToKeep: 2
+FixNamespaceComments: true
+SpaceBeforeAssignmentOperators: true
+SpaceInEmptyParentheses: false
+
+# Includes
+IncludeBlocks: Regroup
+SortIncludes: true
+IncludeCategories:
+  - Regex:           "^\"pch\\.h\""
+    Priority:        -1
+    CaseSensitive:   false
+  - Regex:           "^<.*>"
+    Priority:        2
+  - Regex:           "^\".*\""
+    Priority:        3
+
+# Extra, generally helpful knobs
+ConstructorInitializerIndentWidth: 4
+ContinuationIndentWidth: 4
+IndentWrappedFunctionNames: true
+BinPackArguments: true
+BinPackParameters: true
+BreakConstructorInitializers: AfterColon
+SpacesBeforeTrailingComments: 1
+
+# Treat certain macros as statements to avoid weird wrapping
+# (available in newer clang-format versions)
+StatementMacros:
+  - DEBUG_LOG
+  - ASSERT

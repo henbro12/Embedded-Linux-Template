@@ -1,0 +1,63 @@
+# Clang-Tidy configuration
+# Docs: https://clang.llvm.org/extra/clang-tidy/
+
+Checks: >
+  clang-diagnostic-*,
+  clang-analyzer-*,
+  bugprone-*,
+  performance-*,
+  readability-*,
+  modernize-*,
+  portability-*,
+  cppcoreguidelines-*,
+  misc-*,
+  -modernize-use-trailing-return-type,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -readability-magic-numbers,
+  -cppcoreguidelines-owning-memory,
+  -cppcoreguidelines-macro-usage,
+  -readability-avoid-const-params-in-decls,
+  -readability-identifier-length,
+  -misc-include-cleaner,
+  -misc-non-private-member-variables-in-classes,
+  -portability-avoid-pragma-once
+
+# Treat all enabled diagnostics as errors (CI); relax locally if needed.
+WarningsAsErrors: '*'
+
+# Only analyse this repository's headers (not system or build/_deps ones)
+HeaderFilterRegex: '.*/(libs|apps|tests)/.*'
+
+CheckOptions:
+  - key: modernize-use-override.StrictMode
+    value: 'true'
+  - key: modernize-loop-convert.MinConfidence
+    value: 'reasonable'
+  # do { ... } while (0) is the idiomatic way to write statement-like macros
+  - key: cppcoreguidelines-avoid-do-while.IgnoreMacros
+    value: 'true'
+
+  # Naming conventions
+  - key: readability-identifier-naming.NamespaceCase
+    value: lower_case
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+  - key: readability-identifier-naming.StructCase
+    value: CamelCase
+  - key: readability-identifier-naming.EnumCase
+    value: CamelCase
+  - key: readability-identifier-naming.FunctionCase
+    value: camelBack
+  - key: readability-identifier-naming.MethodCase
+    value: camelBack
+  - key: readability-identifier-naming.PrivateMemberCase
+    value: lower_case
+  - key: readability-identifier-naming.PrivateMemberPrefix
+    value: 'm_'
+  - key: readability-identifier-naming.ConstexprVariableCase
+    value: UPPER_CASE
+
+  - key: readability-function-cognitive-complexity.Threshold
+    value: '20'
+
+FormatStyle: file

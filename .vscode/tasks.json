@@ -1,0 +1,98 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build: debug",
+      "type": "shell",
+      "command": "cmake --preset debug && cmake --build --preset debug",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Build: release",
+      "type": "shell",
+      "command": "cmake --preset release && cmake --build --preset release",
+      "group": "build",
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Test: debug",
+      "type": "shell",
+      "command": "ctest --preset debug",
+      "dependsOn": "Build: debug",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Test: release",
+      "type": "shell",
+      "command": "ctest --preset release",
+      "dependsOn": "Build: release",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run: debug",
+      "type": "shell",
+      "command": "./build/debug/apps/app/app ${input:appArgs}",
+      "dependsOn": "Build: debug",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run: release",
+      "type": "shell",
+      "command": "./build/release/apps/app/app ${input:appArgs}",
+      "dependsOn": "Build: release",
+      "problemMatcher": []
+    },
+    {
+      "label": "Format",
+      "type": "shell",
+      "command": "./scripts/format.sh",
+      "problemMatcher": []
+    },
+    {
+      "label": "Format: check",
+      "type": "shell",
+      "command": "./scripts/format.sh --check",
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Tidy",
+      "type": "shell",
+      "command": "./scripts/tidy.sh",
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Coverage report",
+      "detail": "Writes coverage/index.html",
+      "type": "shell",
+      "command": "cmake --workflow --preset coverage && mkdir -p coverage && gcovr --root . --filter 'libs/' --filter 'apps/' --exclude '.*/generated/.*' --html-details coverage/index.html build/coverage",
+      "problemMatcher": [
+        "$gcc"
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "id": "appArgs",
+      "type": "promptString",
+      "description": "Arguments for the app (e.g. a name, or --version)",
+      "default": ""
+    }
+  ]
+}

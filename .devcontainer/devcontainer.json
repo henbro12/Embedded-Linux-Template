@@ -1,0 +1,17 @@
+{
+  "name": "Embedded Linux C++",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "ubuntu",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cmake-tools",
+        "llvm-vs-code-extensions.vscode-clangd",
+        "ms-vscode.cpptools",
+        "editorconfig.editorconfig"
+      ]
+    }
+  }
+}

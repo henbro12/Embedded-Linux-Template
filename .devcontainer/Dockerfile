@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
         clang \
         clang-format \
+        clangd \
         clang-tidy \
         cmake \
         gcovr \
@@ -22,4 +23,3 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Passwordless sudo, so packages can be installed in a running container (development only).
 RUN echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/ubuntu && chmod 0440 /etc/sudoers.d/ubuntu
 USER ubuntu
-WORKDIR /workspace

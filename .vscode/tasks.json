@@ -81,7 +81,7 @@
       "label": "Coverage report",
       "detail": "Writes coverage/index.html",
       "type": "shell",
-      "command": "cmake --workflow --preset coverage && mkdir -p coverage && gcovr --root . --filter 'libs/' --filter 'apps/' --exclude '.*/generated/.*' --html-details coverage/index.html build/coverage",
+      "command": "./scripts/coverage.sh",
       "problemMatcher": [
         "$gcc"
       ]

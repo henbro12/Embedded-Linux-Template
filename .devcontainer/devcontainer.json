@@ -11,7 +11,13 @@
         "llvm-vs-code-extensions.vscode-clangd",
         "ms-vscode.cpptools",
         "editorconfig.editorconfig"
-      ]
+      ],
+      "settings": {
+        // clangd provides IntelliSense; cpptools is only used for gdb debugging
+        "C_Cpp.intelliSenseEngine": "disabled",
+        // Copy the active preset's compile database to the root, where clangd looks for it
+        "cmake.copyCompileCommands": "${workspaceFolder}/compile_commands.json"
+      }
     }
   }
 }

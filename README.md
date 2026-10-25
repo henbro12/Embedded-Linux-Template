@@ -7,10 +7,10 @@ clang-format/clang-tidy and GitHub Actions CI.
 
 - GCC 13+ or Clang 17+
 - CMake 3.25+, Ninja, Git
-- Optional: clang-format, clang-tidy, gcovr
+- Optional: clang-format, clang-tidy, clangd, gcovr
 
 ```bash
-sudo apt install build-essential cmake ninja-build git clang clang-format clang-tidy gcovr
+sudo apt install build-essential cmake ninja-build git clang clang-format clang-tidy clangd gcovr
 ```
 
 The devcontainer in `.devcontainer/` has all of this installed.
@@ -63,14 +63,7 @@ Build output goes to `build/<preset>/`. Warnings are errors; to relax this local
 ./scripts/format.sh           # format all sources
 ./scripts/format.sh --check   # check only
 ./scripts/tidy.sh             # clang-tidy
-```
-
-Coverage report:
-
-```bash
-cmake --workflow --preset coverage
-gcovr --root . --filter 'libs/' --filter 'apps/' --exclude '.*/generated/.*' \
-  --html-details coverage/index.html build/coverage
+./scripts/coverage.sh         # coverage report in coverage/index.html
 ```
 
 ## Layout

@@ -52,16 +52,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ninja-build gcovr
 
-      - name: Build and test
-        run: cmake --workflow --preset coverage
-
-      - name: Coverage report
-        run: |
-          mkdir -p coverage
-          gcovr --root . --filter 'libs/' --filter 'apps/' --exclude '.*/generated/.*' \
-            --print-summary --xml-pretty --output coverage/coverage.xml \
-            --html-details coverage/index.html \
-            build/coverage
+      - name: Build, test and coverage report
+        run: ./scripts/coverage.sh
 
       - uses: actions/upload-artifact@v7
         with:
